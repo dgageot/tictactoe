@@ -1,0 +1,17 @@
+# sudo gem install watchr growl
+#
+# Run me with:
+#   $ watchr watch.txt
+#
+require 'growl'
+
+watch('.*\.ik') {test}
+
+def test
+  puts('Testing...')
+  if (system "ispec spec.ik")
+    Growl.notify 'SUCCESS', :icon => 'green.png'
+  else
+    Growl.notify 'FAILURE', :icon => 'red.png'
+  end
+end
